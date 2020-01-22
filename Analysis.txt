@@ -1,0 +1,89 @@
+Orcs does not level up
+
+higher dmg == faster leveling
+
+
+Logic:
+    r_cd > healing_cd
+    
+
+after firing: r_cd activated
+    if enemies < min_target_distance:
+        move back -- move to previous node // move > than max(targets' min_target_distance)
+        check_conditions:
+    else:
+        move until a target detected within min_target_distance:
+        
+    if hp < 60%
+        heal up : healing cd activated
+            (needs to be level 4 to matach r_cd)
+    
+    
+
+Levling list:
+1: Healing CD
+2: 
+
+Variables: 
+Team Points --  things killed
+XP -- Damage done
+
+
+Question for teacher:
+in what situation will any entity move out of the path. 
+is it ok if i have a function that adds to the graph path's like inserting into a dictionary. 
+    dynamically add to the path_graph
+    no editing of pathFinding.txt.file
+
+
+
+Work Flow-- 
+World -- (add_entity == inside entities dictionary) --  Wizard.py -- (init) -- Character.py 
+
+
+def process
+world.process -- entities.process -- Wizard_PIRANHAGUN.process -- character.process
+
+== generating nodes ==
+    world -- (read from file) -- create Nodes -- add connecction -- (add to and from)
+
+character.process
+    if character dies -- update opponent's score -- remove entity 
+    set heroes to KO state, cd for respawn
+    update cooldownss
+
+When hero dies: 
+    character.process set_state("ko")
+    In KO_State:
+        Update current_respawn_time to respawn_time
+
+
+self.wizard -- world -- self.graph -- self.nodes
+
+Paths Storage:
+
+self.wizard.world.paths <-- path = Grpah() <-- 
+
+
+== Attacking ==
+
+Wizard.respawn -- (move along path) -- seeking_state:
+    seeking_state -- (check enemies) 
+
+
+## Code to get highest ID in nodes,
+# temp = max(list(map(lambda i : i, self.wizard.world.graph.nodes)))
+
+
+
+
+# tempNode2 = self.wizard.path_graph[map(lambda i : i, filter(lambda k : k == self.nearestNode.id, self.wizard.path_graph)) - 1]
+# tempNode3 = self.wizard.path_graph[map(lambda i : i, filter(lambda k : k == self.nearestNode.id, self.wizard.path_graph)) + 1]
+
+## returns node.keys() based off index 
+self.wizard.path_graph.nodes[list(self.wizard.path_graph.nodes)[1]].id
+
+
+### /// Current Flow /// ###
+
+spawn --> seeking -- > find enemy --> attack --> damaged --> retreat --> far enough --> seeking --> 
